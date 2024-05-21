@@ -1,1 +1,1 @@
-# MY C++ JOURNEY: Jeremy Omane-Anrwi Boateng (21/05/2024)
+# MY C++ JOURNEY: Jeremy Omane-Antwi Boateng (21/05/2024)
