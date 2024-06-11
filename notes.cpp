@@ -1036,3 +1036,196 @@ int main(){
     double flo = 89;
     return 0;
 }*/
+// PASSWORD GENERATOR
+/*#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include <ctime>
+
+std::string gen_password(int length) {
+    if (length < 4) {
+        throw std::invalid_argument("Password length must be at least 4 to include all character types.");
+    }
+
+    const std::string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const std::string lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const std::string digits = "0123456789";
+    const std::string punctuation = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+
+    std::string char_pool = uppercase + lowercase + digits + punctuation;
+    std::string password;
+
+    // Ensure the password has at least one character from each category
+    password += uppercase[std::rand() % uppercase.size()];
+    password += lowercase[std::rand() % lowercase.size()];
+    password += digits[std::rand() % digits.size()];
+    password += punctuation[std::rand() % punctuation.size()];
+
+    // Fill the rest of the password length with random characters from the pool
+    for (int i = 4; i < length; ++i) {
+        password += char_pool[std::rand() % char_pool.size()];
+    }
+
+    // Shuffle the password to ensure randomness
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(password.begin(), password.end(), g);
+
+    return password;
+}
+
+int main() {
+    std::srand(std::time(nullptr)); // Seed the random number generator with the current time
+    int length;
+    std::cout << "Password length: ";
+    std::cin >> length;
+
+    try {
+        std::string password = gen_password(length);
+        std::cout << "Password: " << password << std::endl;
+    } catch (const std::invalid_argument &e) {
+        std::cerr << e.what() << std::endl;
+    }
+
+    return 0;
+} 
+*/
+
+//USING TRY CATCH AND THROW IN ERROR DETECTION
+/* try Block: Contains code that might throw an exception.
+
+
+throw Statement: Used to signal that an exceptional condition (an error) has occurred.
+                This can be used to throw exceptions manually.
+
+catch Block:Used to handle exceptions thrown in the try block.
+            It specifies the type of exception it can handle.
+
+a simple program that detects a should take a string input only
+#include <iostream>
+#include <string>
+#include <stdexcept>
+
+void getStringInput() {
+    std::string input;
+    std::cout << "Enter a string: ";
+    std::cin >> input;
+
+    // Check if the input is a number
+    for (char c : input) {
+        if (isdigit(c)) {
+            throw std::invalid_argument("Input is not a string, it contains numeric characters.");
+        }
+    }
+
+    std::cout << "You entered a valid string: " << input << std::endl;
+}
+
+int main() {
+    try {
+        getStringInput();
+    } catch (const std::invalid_argument &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
+*/
+
+//DYNAMIC MEMORY
+/*
+    Dynamic memory is memory that is allocated after the program is
+    already compiled and running. Use the 'new' operator to allocate
+    memory in the heap rather than the stack.
+    Useful when we don't know how much memory we will need in our programs.
+    makes programs more flexible, especially when accepting user input.
+
+*/
+
+//RECURSION
+
+/* #include <iostream>
+
+void walk(int steps);
+int main(){
+
+    walk(10);
+
+    return 0;
+}
+void walk(int steps){
+    //iterative approach
+    //for(int i =0;i < steps;i++){
+    //    std::cout << "You took a step.\n";}
+    //recursive approach.
+     if(steps > 0){
+        std::cout << "You took a step.\n";
+        walk(steps - 1);
+    }
+}
+*/
+/* #include <iostream>
+using namespace std;
+int factorial(int num);
+int main(){
+
+    std::cout << factorial(10);
+    return 0;
+
+}
+int factorial(int num){;
+    if(num > 1){
+        return num * factorial(num-1);
+    }
+    else{
+        return 1;
+    }
+}*/
+
+//FUNCTION TEMPLATES
+/*
+//allows us to use a function that can return more tha one data type
+//without creating other overloaded functions
+//but it can only receive arguments of the same data type
+//unless you define another template typename
+#include <iostream>
+template < typename T, typename U> //do this before using 'T'
+auto max(T x, U y); //now set up to receive two different data types
+// hence we must change the return type to "auto"
+int main(){
+    std::cout << max(4.3,6.9) << '\n';
+    std::cout << max('p',6) << '\n';
+}
+template <typename T,typename U>
+auto max(T x, U y){
+     return (x > y) ? x : y;
+};
+*/
+
+//STRUCT
+
+// struct = a structure that group related variables under one name
+// structs  can contain different data types (string,int, double, bool,etc)
+// variables in a struct are known as members
+//  members can be access with ' . '("Class Member Access Operator")
+/*
+#include <iostream>
+#include <string>
+struct student{
+    std::string name;
+    double gpa;
+    bool enrolled;
+};
+int main(){
+    student student1; //a struct works as its own datatype
+    student1.name = "Jeremy O.A Boateng";
+    student1.gpa = 3.8;
+    student1.enrolled = true;
+
+    std::cout << "Name: " << student1.name << '\n'; 
+    std::cout << "GPA: " << student1.gpa << '\n'; 
+    std::cout << "Enrollment Status: " << (student1.enrolled  ? "Yes" : "No") << '\n'; 
+}
+*/
